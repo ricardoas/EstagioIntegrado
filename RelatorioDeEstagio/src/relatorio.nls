@@ -1,0 +1,54 @@
+\begin{thenomenclature} 
+
+ \nomgroup{A}
+
+  \item [{BoT}]\begingroup Bag-of-Tasks\nomeqref {4.0}\nompageref{19}
+  \item [{DAG}]\begingroup Directed Acyclic Graph\nomeqref {6.0}
+		\nompageref{35}
+  \item [{GRAM}]\begingroup Grid Resource Access and Management\nomeqref {6.0}
+		\nompageref{27}
+  \item [{HTTP}]\begingroup Hypertext Transfer Protocol\nomeqref {4.0}
+		\nompageref{13}
+  \item [{I/O}]\begingroup Input/Output\nomeqref {4.0}\nompageref{14}
+  \item [{JDF}]\begingroup Job Descriptor File\nomeqref {6.0}
+		\nompageref{35}
+  \item [{JVM}]\begingroup Java Virtual Machine\nomeqref {6.0}
+		\nompageref{30}
+  \item [{LAL}]\begingroup Laboratoire de L'Accélérateur Linéaire\nomeqref {6.0}
+		\nompageref{25}
+  \item [{LAN}]\begingroup Local-area Network\nomeqref {4.0}
+		\nompageref{14}
+  \item [{LRI}]\begingroup Laboratoire de Recherche en Informatique\nomeqref {6.0}
+		\nompageref{25}
+  \item [{LSD}]\begingroup Laboratório de Sistemas Distribuídos\nomeqref {0}
+		\nompageref{3}
+  \item [{MPP}]\begingroup Massively Parallel Processor\nomeqref {4.0}
+		\nompageref{14}
+  \item [{NoF}]\begingroup Network of Favors\nomeqref {6.0}
+		\nompageref{37}
+  \item [{NOW}]\begingroup Network of Workstations\nomeqref {4.0}
+		\nompageref{14}
+  \item [{PUC-Rio}]\begingroup Pontifícia Universidade Católia do Rio de Janeiro\nomeqref {6.0}
+		\nompageref{26}
+  \item [{QoS}]\begingroup Quality of Service\nomeqref {4.0}
+		\nompageref{16}
+  \item [{RNP}]\begingroup Rede Nacional de Pesquisa\nomeqref {3.0}
+		\nompageref{11}
+  \item [{SSL}]\begingroup Space Sciences Laboratory\nomeqref {6.0}
+		\nompageref{25}
+  \item [{UFG}]\begingroup Universidade Federal de Goiás\nomeqref {6.0}
+		\nompageref{26}
+  \item [{UFMA}]\begingroup Universidade Federal do Maranhão\nomeqref {6.0}
+		\nompageref{26}
+  \item [{UFMS}]\begingroup Universidade Federal de Mato Grosso do Sul\nomeqref {6.0}
+		\nompageref{26}
+  \item [{URI}]\begingroup Unified Resource Idintifier\nomeqref {6.0}
+		\nompageref{35}
+  \item [{USP}]\begingroup Universidade de São Paulo\nomeqref {6.0}
+		\nompageref{26}
+  \item [{VME}]\begingroup Virtual Machine Environment\nomeqref {6.0}
+		\nompageref{24}
+  \item [{XMPP}]\begingroup Extensible Messaging and Presence Protocol\nomeqref {6.0}
+		\nompageref{31}
+
+\end{thenomenclature}

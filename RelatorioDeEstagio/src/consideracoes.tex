@@ -1,0 +1,18 @@
+\chapter{Consideração Finais}
+\label{consideracoes}
+
+%Descrever sobre a importância do estágio realizado para a sua formação, as dificuldades encontradas na realização do estágio (destacar aspectos positivos e negativos) e finalizar com comentários, apresentando sugestões se achar necessário.
+
+O estágio trouxe novos conhecimentos a formação do estagiário como bacharelando em Ciência da Computação assim como deu oportunidade de pôr em prática alguns tópicos abordados em disciplinas teóricas. Tópicos muito importantes foram os relacionados à Gerência e Configuração de Redes de Computadores, os quais são oferecidos em disciplinas optativas. Tópicos teóricos das disciplinas Sistemas Operacionais, do currículo obrigatório, e Sistemas Distribuídos, do currículo optativo, foram de fundamental importância desde a etapa de levantamento bibliográfico como também configuração do ambiente. Grande parte da teoria vista nas disciplinas contribuiu de certo modo para a montagem do trabalho final. 
+
+Foi sentida uma dificuldade em se organizar e por em prática esse tipo de pesquisa com objetivos voltados a obtenção de resultados qualitativos. A disciplina de Metodologia Científica poderia ser adaptada para explorar esse tipo de pesquisa que apesar de pouco comum na área de ciências exatas pode fundamentar um trabalho mais qualitativo com os seus resultados.
+
+Quanto ao trabalho realizado, alguns pontos negativos podem ser citados como: a opção por usar aplicações com alta demanda de CPU e pouca de dados teve como objetivo simplificar a análise realizada. Avaliar aplicações \textit{data intensive} requer uma metodologia mais quantitativa para avaliar a eficácia dos mecanismos empregados. No entanto, a pesquisa feita permitiu construir a classificação dos middlewares mesmo sem usar tais tipos de aplicações dado que as características avaliadas puderam ser extraídas mesmo sem o uso de uma metodologia mais apurada quantitativamente.
+
+O trabalho realizado pode ser estendido para incluir aplicações paralelas fortemente acopladas (em que as tarefas se comunicam, a exemplo de MPI) visto que algumas das grades dão suporte à execução desse tipo de aplicação. Um trabalho similar pode ser realizado considerando grades de serviço tais como Globus ou até comparando o estado da prática entre as grades de serviço com as grades de Desktop oportunistas.
+
+Observou-se que o OurGrid é o único que possui uma grade existente que é \textit{free-to-join} e \textit{free-to-execute}, isto é, aberta para a doação de recursos e uso de recursos para aplicações do usuário. No entanto, o OurGrid dá suporte apenas à execução de aplicações BoT, o que nem sempre satisfaz todos os usuários.
+
+O Condor mostra-se o \textit{middleware} mais estável e que detém a maior comunidade (quando se considera a união de vários pools). Por ter como objetivo a flexibilidade, aceita di\-fe\-ren\-tes tipos de aplicações com diferentes requisitos, porém às custas de uma configuração cara.
+
+Por fim, o XWHEP possui uma organização diferente em que os dados são disponibilizados por URIs e existe controle de acesso. Dessa forma as aplicações maliciosas não podem apagar dados do servidor. No entanto, a existência de um banco de dados central do qual todos os componentes dependem é uma preocupação para administradores da grade computacional.

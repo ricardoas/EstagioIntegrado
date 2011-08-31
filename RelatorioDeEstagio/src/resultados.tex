@@ -1,0 +1,395 @@
+\chapter{Resultados}
+\label{resultados}
+
+\section{Definição das Métricas}
+
+Nesse trabalho procurou-se dar um cunho mais prático aos resultados e isso guiou a escolha dos aspectos a serem levados em conta ao avaliar os \textit{middleware} de grades. As métricas observadas nesse trabalho foram divididas em três categorias: (i) instalação e configuração, (ii) gerência e (iii) uso da grade computacional.
+
+\subsection{Instalação e Configuração}
+
+Existem duas visões que podem ser investigadas nesse caso: (i) juntar-se a uma grade exis\-ten\-te, mantida por outra instituição e (ii) começar uma nova comunidade. Com isso algumas perguntas foram identificadas para guiar o processo:  
+
+\begin{itemize}
+  \item Quantas entidades precisam ser instaladas?
+  \item A quais plataformas e sistemas operacionais é dado suporte?
+  \item Alguma entidade precisa ser instalada em máquina dedicada?
+  \item É necessário permissão de super-usuário para instalar algum componente?
+  \item Necessita de negociação para entrar numa grade existente?
+  \item Quantas portas precisam ser abertas para permitir a comunicação entre as entidades?
+\end{itemize}
+
+\subsection{Gerência}
+
+Nesse tópico foram identificadas questões relativas a administração dos recursos, em termos de ferramentas e tecnologias oferecidas pelos pacotes de middleware de grades computacionais aos gerentes e equipe de suporte. Dada a natureza distribuída dos componentes, pode ser tra\-ba\-lho\-so obter um estado atual do funcionamento da grade sem a ajuda desse tipo de ferramenta gerencial. Dessa forma, foram identificadas as seguintes perguntas:
+
+\begin{itemize}
+  \item Existem ferramentas que dão apoio à gerencia?
+  \item É dado suporte a algum mecanismo de virtualização?
+  \item Existem mecanismos de proteção que protejam os recursos das aplicações e vice\-versa?
+\end{itemize}
+ 
+\subsection{Uso da Grade Computacional}
+
+Implantar e gerenciar uma grade computacional não faria sentido se não existisse a necessidade de usá-la. Nessa etapa da análise as perguntas identificadas visam esclarecer quão fácil é usar a grade implantada. Um \textit{trade-off} importante é a transparência e a configurabilidade. Transparência é esconder do usuário o funcionamento ou mesmo a existência de mecanismos como replicação, realocação, concorrência e migração ou mesmo onde as aplicações estão sendo executadas e se os componentes falham em algum momento. As perguntas identificadas nessa etapa foram:
+
+\begin{itemize}
+  \item A aplicação necessita estar escrita numa linguagem determinada?
+  \item Que tipos de aplicações são suportados?
+  \item É preciso escrever algo mais para executar uma aplicação?
+  \item Existem mecanismos de detecção de ociosidade?
+  \item Existem mecanismos de incentivo para doar recursos à grade?
+  \item O mecanismo de \textit{checkpoint} é suportado?
+\end{itemize}
+
+\section{Preparação do Ambiente}
+
+Uma vez identificadas as métricas, foi necessário projetar um ambiente onde se pudesse testar funcionalidades de cada middleware de grade computacional. A tecnologia de máquinas virtuais foi usada pois permite a emulação isolada de ambientes de computação distribuído de forma barata.
+
+Nesse estágio, o ambiente de máquinas virtuais (\textit{Virtual Machine Environment} - VME\nomenclature{VME}{Virtual Machine Environment}) usado foi o Linux-VServer~\cite{vserver:site}. O VServer, a partir de uma modificação no kernel da máquina hospedeira, aloca dinamicamente os recursos tais como memória, espaço em disco e \textit{tick} de CPU~\cite{vserver}. Ele foi escolhido dado o fato de já estar instalado nas máquinas usadas no ambiente do estágio e sua facilidade de uso.
+
+\section{Middleware de Grades Computacionais}
+
+Durante a fase de revisão bibliográfica, foram identificados cinco pacotes de \textit{middleware} de grades computacionais: Condor, XtremWeb, BOINC, OurGrid e InteGrade.
+
+\subsection{Condor}
+
+Condor foi criado na década de 80 na Universidade de Winconsin inicialmente como um sistema de processamento em \textit{batch} utilizando os computadores da universidade. O Condor é um projeto bem maduro com relação aos outros pacotes de \textit{middleware} identificados e tem evoluído bastante desde seu surgimento. Uma das características que acompanha o projeto desde seus estágios iniciais é a flexibilidade, ou seja, a decisão final é sempre do usuário. Isso permite ao Condor se adaptar aos mais variados ambientes embora exija mais trabalho de configuração.
+
+\subsection{XWHEP}
+
+O XWHEP (\textit{XtremWeb for High Energy Physics}), apesar do que o nome possa indicar, é uma plataforma para usar computação voluntária sobre a internet para aplicações de propósito geral. 
+
+O XWHEP nasceu do XtremWeb~\cite{xtremweb} que foi um \textit{middleware} desenvolvido no Laboratoire de Recherche en Informatique (LRI\nomenclature{LRI}{Laboratoire de Recherche en Informatique})~\cite{lri}. Num esforço em conjunto com o Laboratoire de L'Accélérateur Linéaire (LAL\nomenclature{LAL}{Laboratoire de L'Accélérateur Linéaire})~\cite{lal}, um laboratório naturalmente de física de altas energias, foi criado o XWHEP com a finalidade de estudar sistemas distribuídos em larga escala.
+
+\subsection{OurGrid}
+
+A comunidade OurGrid é formada por todos os usuários e desenvolvedores do \textit{middleware} OurGrid. Tal middleware possibilita a criação de grades computacionais peer-to-peer cujo principal objetivo é reduzir o tempo de execução de aplicações BoT (\textit{bag-of-tasks}), que são aplicações paralelas com tarefas independentes, ou seja, que não necessitam de comunicação entre si. São exemplos de tais aplicações a varredura de parâmetros e o processamento de imagens~\cite{labs}. O OurGrid está em produção desde dezembro de 2004 e existe uma comunidade de laboratórios (também chamados de \textit{sites}), liderados pelo Laboratório de Sistemas Distribuídos (LSD), formando uma grade aberta, \textit{free-to-join} e cooperativa na qual tais la\-bo\-ra\-tó\-rios doam seus recursos ociosos em troca de acessar recursos ociosos de outros la\-bo\-ra\-tó\-rios quando precisarem~\cite{labs}.
+
+\subsection{BOINC}
+
+BOINC, acrônimo para \textit{Berkeley Open Infrastructure for Network Computing}, é uma plataforma para computação em recursos públicos (\textit{public computing}) desenvolvido pelo mesmo time responsável pelo SETI@home no \textit{Space Sciences Laboratory} (SSL\nomenclature{SSL}{Space Sciences Laboratory})\cite{ssl} na Universidade da Califórnia, Berkeley. O BOINC tem como objetivos principais: (i) promover a criação de mais projetos usando computação em recursos públicos e incentivar uma grande porcentagem dos usuários domésticos a participar de um projeto desses. Existem dois componentes no BOINC: (i) Server, responsável por armazenar o projeto e as aplicações que o compõe; e (ii) Client, instalado nas máquinas voluntárias que desejam doar seus recursos. Tanto o código do Server quando o do Client necessitam de modificações para executar um novo projeto e por isso não foi incluído neste trabalho. 
+ 
+\subsection{InteGrade}
+
+O projeto InteGrade é encabeçado pela Universidade de São Paulo (USP\nomenclature{USP}{Universidade de São Paulo}), Pontifícia Universidade Católica do Rio de Janeiro (PUC-Rio\nomenclature{PUC-Rio}{Pontifícia Universidade Católia do Rio de Janeiro}), Universidade Federal de Goiás (UFG\nomenclature{UFG}{Universidade Federal de Goiás}), Universidade Federal do Maranhão (UFMA\nomenclature{UFMA}{Universidade Federal do Maranhão}) e Universidade Federal de Mato Grosso do Sul (UFMS\nomenclature{UFMS}{Universidade Federal de Mato Grosso do Sul}). O \textit{middleware} InteGrade viabiliza a execução de aplicações paralelas usando ciclos ociosos das estações de trabalho \textit{desktop} de um laboratório, por exemplo, embora recursos dedicados também possam ser acoplados à grade. 
+
+O InteGrade é uma das poucas iniciativas brasileiras no desenvolvimento de grades computacionais e ainda está em estágio inicial visto que o software não tem uma versão oficial disponível. O Integrade teve seu quinto release candidate publicado em meados de Junho e não foi possível incluí-lo na avaliação. No entanto, algumas características preliminares puderam ser extraídas. O \textit{middleware} é orientado a aplicações paralelas com um número significativo de comunicação entre os nós que a executam e atualmente dá suporte a aplicações seqüenciais, BoT e paralelas acopladas (em MPI e BSP). A instalação é automatizada com o \textit{IGDeployer} (\textit{feature} do novo \textit{release}) e requer algumas bibliotecas e comunicação por Secure Shell (SSH) entre as máquinas usando pares de chave.
+
+\section{Avaliação}
+
+\subsection{Instalação e Configuração}
+
+O processo de instalação e configuração é diferente em todos os \textit{middleware} de grade avaliados. O \textit{trade-off} aqui é configurabilidade em detrimento da simplicidade. Como essa categoria exige um maior nível de detalhes que as outras, cada \textit{middleware} de grade será explicado separadamente e, por fim, alguns aspectos são comparados entre eles. 
+
+\subsubsection{Condor} 
+
+Máquinas numa grade Condor podem assumir três papéis diferentes como mostrado na Figura~\ref{figure:condor1}: (i) a \textit{Submit Machine}, é qualquer máquina na grade que interage submetendo tarefas; (ii) as \textit{Execution Machine}, são as máquinas que têm seus recursos doados; e (iii) o \textit{Central Manager}, que faz o casamento entre tarefas submetidas e recursos disponíveis buscando melhor adaptar os requisitos das tarefas. Existe a possibilidade de usar um quarto componente, o \textit{Checkpoint Server}, usado para armazenar os dados de \textit{checkpoint} das tarefas submetidas mas que não faz parte da distribuição padrão do Condor e, portanto, não foi usado. O Condor constrói \textit{pools} de máquinas em LANs para a submissão de tarefas em \textit{batch}. Com a evolução do \textit{middleware}, foram experimentadas várias formas de se conectar \textit{pools} entre si e atualmente é usado o mecanismo chamado de \textit{direct flocking} no qual uma \textit{Submit Machine} submete as tarefas para outro \textit{Central Manager} quando tais tarefas não podem ser executadas no \textit{pool} local. Outro mecanismo que também pode ser usado é o \textit{Grid Resource Access and Management} (GRAM\nomenclature{GRAM}{Grid Resource Access and Management}), mas que é provido em outro pacote chamado Condor-G e que, por ser direcionado ao gerenciamento de tarefas em grades computacionais já existentes (e não criar uma nova grade) usando Globus Toolkit, ficou fora do escopo deste trabalho.
+
+\begin{figure}[htp]
+\begin{center}
+  \includegraphics[width=10cm]{figures/condor.png}
+  \caption[Arquitetura do Condor]{Arquitetura do Condor}
+  \label{figure:condor1}
+\end{center}
+\end{figure}
+
+Ainda na Figura~\ref{figure:condor1}, é mostrada a composição interna de cada componente. O Central Manager provê dois serviços básicos: (i) o \textit{condor\_collector}, que coleta informações dos componentes mantendo um histórico do estado da grade; e (ii) o \textit{condor\_negotiator}, responsável pelo \textit{matching} entre recursos disponíveis e aplicações submetidas. As \textit{Submit Machines} possuem vários daemons responsável pelo controle das tarefas em execução entre eles o \textit{condor\_shadow}, que atua como um gerente dos recursos para a aplicação executando na \textit{Execution Machine}, isto é, ela recebe as \textit{system calls} da tarefa do cliente, executando no recurso doado (usando o ambiente de execução \textit{Standard}, explicado mais a frente) e redirecionadas pela API do Condor.
+
+Num \textit{pool} Condor só existe um único \textit{Central Manager}. Ele é responsável por coletar informações dos outros componentes e ainda por realizar o casamento entre recursos e tarefas. Caso essa máquina falhe não será possível mais executar nenhuma tarefa, apesar de que as tarefas já em execução continuam a executar. Dada essa importância, recomenda-se instalar o Central Manager numa máquina com maior disponibilidade ou que possa ser reiniciada o mais rápido possível no caso de falha. Também se deve considerar recursos de disco e capacidade de tráfego de rede para essa máquina.
+
+O \textit{middleware} está disponível para as plataformas Intel x86 e 64, PowerPC, SPARC e HP/PA, sendo possível instalar em diferentes sistemas operacionais como MacOS, Linux Debian, Windows NT, Solaris, FreeBSD, AIX, HP/UX, RHEL, entre outros.
+
+Existem \textit{pools} Condor espalhados por todo o mundo. Formar comunidades ou entrar numa comunidade formada depende das intenções das entidade que mantêm cada uma delas. O administrador de um laboratório pode criar um pool com os recursos existentes e permitir a execução de tarefas de qualquer outro pool, porém precisa de autorização do administrador de um pool para usar seus recursos. Existem configurações específicas referentes à permissão de execução de aplicações de outros pools e que precisam ser manualmente escolhidas. 
+
+\subsubsection{XWHEP}
+
+O XWHEP também possui três componentes fundamentais (Figura~\ref{figure:xwhep1}): (i) o \textit{Server}, entidade centralizada encarregada de gerenciar a plataforma; (ii) o \textit{Worker}, software distribuído nas máquinas que terão seus recursos doados; e (iii) o \textit{Client}, software que interage com a plataforma submetendo tarefas.
+
+\begin{figure}[htp]
+\begin{center}
+  \includegraphics[width=10cm]{figures/xwhep.png}
+  \caption[Arquitetura do XWHEP]{Arquitetura do XWHEP}
+  \label{figure:xwhep1}
+\end{center}
+\end{figure}
+
+Os componentes dependem fundamentalmente do \textit{Server} e não suportam falhas dele. O banco de dados central também é um ponto único de falha. 
+
+O middleware é escrito na linguagem Java e portanto requer a JVM para compilar os pacotes. Porém, a instalação do server só pode ser feita em máquinas com Linux ou Mac OS X, enquanto Worker e Client podem ser instalados em em Linux, Windows (executando no ambiente Cygwin) e MacOS.
+ 
+O XWHEP é usado pelo LAL~\cite{lal} para execução de aplicações envolvendo física de altas energias e usuários interessados em contribuir podem voluntariamente doar os ciclos ociosos de suas máquinas, instalando o Worker, para a execução de aplicações do LAL. No entanto não existe uma comunidade aberta onde o usuário possa também consumir recursos da grade.
+
+\subsubsection{OurGrid}
+
+O OurGrid possui quatro componentes fundamentais: (i) o \textit{Peer}, componente existente em cada site e responsável por fazer o casamento entre recursos e tarefas a serem executadas; (ii) o \textit{Discovery Service}, entidade centralizada encarregada de manter um catálogo de \textit{Peers}; (ii) o \textit{Worker}, que executa nas máquinas com recursos a serem doados; e (iii) o \textit{Broker}, que submete e acompanha a execução dos \textit{jobs} na grade. O \textit{Discovery Service} não acompanha a distribuição padrão oferecida na página do OurGrid~\cite{ourgrid:site}. Um administrador que queira implantar uma comunidade a parte deve procurar uma versão estável no repositório do código ou entrando em contato com o time de desenvolvimento.
+
+Na Figura~\ref{figure:ourgrid1}, é apresentada a distribuição desses componentes em dois \textit{sites} distintos. Cada site representa um domínio administrativo diferente gerenciado por um \textit{peer}. Por ser um componente centralizado, o \textit{Discovery Service} é um ponto de falha. Entre suas atribuições estão a de manter a comunidade conectada, informando a cada \textit{Peer} a lista dos \textit{Peers} presentes na comunidade. Uma vez que este componente falhe, não será possível a entrada de novos \textit{Peers} na comunidade. Atualmente, com a versão estável do \textit{Discovery Service}, é possível instalar mais de um por comunidade, atuando como um servidor de replicação.
+
+\begin{figure}[htp]
+\begin{center}
+  \includegraphics[width=10cm]{figures/og.png}
+  \caption[Arquitetura do OurGrid]{Arquitetura do OurGrid}
+  \label{figure:ourgrid1}
+\end{center}
+\end{figure}
+
+Como o OurGrid é escrito na linguagem Java~\cite{java} e executa sobre a \textit{Java Virtual Machine} (JVM\nomenclature{JVM}{Java Virtual Machine}) é independente de plataforma e sistema operacional dado que estes dêem suporte a tecnologia Java.  
+
+Atualmente, há uma comunidade aberta \textit{free-to-join} do OurGrid liderada pelo LSD~\cite{lsd}. Qualquer interessado em usar o \textit{middleware} OurGrid pode ser juntar a comunidade compartilhando seus recursos.
+
+\subsubsection{Configuração}
+
+O Condor segue o princípio de deixar todas as decisões a critério do usuário e isso o torna bastante difícil de configurar pois existem muitas decisões a serem tomadas antes de iniciar a instalação. As configurações do Condor são divididas em quatro categorias: (i) obrigatórias, sem elas a grade não funciona; (ii) obrigatórias com opções padrão; (iii) políticas de execução; e (iv) arquivos de log e opções mais específicas de cada tipo de aplicação suportada.
+
+É recomendado que os componentes do \textit{middleware} executem com privilégio de super usuário dado que de outro modo qualquer pessoa poderia fazer com que os daemons do condor executassem programas maliciosos.
+
+O Condor usa as portas 9618 e 9614 respectivamente para o coletor de dados e o negociador. Os outros serviços executam usando portas escolhidas randomicamente pelo sistema mas que podem ser configuradas para usar a faixa padrão de 9600 a 9700. O número de portas no \textit{Central Manager} é determinado por informações como, por exemplo, o número de máquinas no pool, número de processadores nos recursos doados e número máximo de tarefas simultâneas nos recursos individualmente.   
+
+Um caso similar é o XWHEP. A instalação é bastante problemática dado que muitas das opções de configuração são obrigatórias e confusas. Como a arquitetura da grade requer que todos os componentes tenham acesso a um único banco de dados usado para depositar os arquivos das aplicações, é necessário que se proveja acesso ao banco a partir de todas as máquinas na grade abrindo a porta 3306 usada pelo MySQL, o que nem sempre é uma prática aceitável pelos administradores da rede. Além desta, outras portas precisam ser abertas para permitir comunicação com o Server (4321 a 4329) e com o Worker (4323).
+
+De todos os pacotes de \textit{middleware} analizados, o OurGrid é o que requer menos pa\-râ\-me\-tros de configuração a serem atribuídos. Como os componentes se comunicam através do protocolo Extensible Messaging and Presence Protocol (XMPP\nomenclature{XMPP}{Extensible Messaging and Presence Protocol}), é necessário que duas portas estejam abertas para comunicação entre todos os componentes (por padrão 5222 e 5223) e o servidor XMPP e uma porta no servidor aberta para comunicação com o mundo (por padrão, a porta 5269). A configuração dos componentes é simples e pode ser feita usando a interface gráfica ou por meio de comandos.
+
+\subsection{Gerência e Administração}
+
+O Condor oferece alguns comandos próprios para administradores do sistema como o \textit{condor\_status} para buscar informações momentâneas da grade, como o estado das máquinas que compõem a grade ou as máquinas disponíveis para executar tarefas; e o \textit{condor\_stats} que provê informações históricas da grade armazenada no CentralManager. Exemplos das saídas do comando \textit{condor\_status} podem ser encontradas na Figura~\ref{figure:code1} e~\ref{figure:code2}
+
+\begin{figure}
+\makebox[\textwidth]{\hrulefill}
+\scriptsize
+\begin{verbatim}
+Name               JavaVendor Ver    State     Activity LoadAv Mem   ActvtyTime
+
+slot1@ricardo0.lsd Sun Micros 1.6.0_ Owner     Idle     0.200   984  0+00:05:07
+slot2@ricardo0.lsd Sun Micros 1.6.0_ Owner     Idle     0.000   984  0+00:05:08
+slot1@ricardo1.lsd Sun Micros 1.6.0_ Owner     Idle     0.010   759  0+00:05:09
+slot2@ricardo1.lsd Sun Micros 1.6.0_ Owner     Idle     0.000   759  0+00:05:10
+slot1@ricardo2.lsd Sun Micros 1.6.0_ Unclaimed Idle     0.010   991  0+00:00:04
+slot2@ricardo2.lsd Sun Micros 1.6.0_ Unclaimed Idle     0.000   991  0+00:05:06
+
+                     Total Owner Claimed Unclaimed Matched Preempting Backfill
+
+         INTEL/LINUX     6     4       0         2       0          0        0
+
+               Total     6     4       0         2       0          0        0
+
+\end{verbatim}
+\makebox[\textwidth]{\hrulefill}
+\caption{Saída do comando \textit{condor\_status}}
+\label{figure:code1}
+\end{figure}
+\normalsize
+
+
+\begin{figure}
+\makebox[\textwidth]{\hrulefill}
+\scriptsize
+\begin{verbatim}
+Name               OpSys      Arch   State     Activity LoadAv Mem   ActvtyTime
+
+slot1@ricardo2.lsd LINUX      INTEL  Unclaimed Idle     0.010   991  0+00:00:04
+slot2@ricardo2.lsd LINUX      INTEL  Unclaimed Idle     0.000   991  0+00:05:06
+
+                     Total Owner Claimed Unclaimed Matched Preempting Backfill
+
+         INTEL/LINUX     2     0       0         2       0          0        0
+
+               Total     2     0       0         2       0          0        0
+\end{verbatim}
+\makebox[\textwidth]{\hrulefill}
+\caption{Saída do comando \textit{condor\_status -available}}
+\label{figure:code2}
+\end{figure}
+\normalsize
+
+De modo similar o XWHEP oferece scripts para verificar o estado da grade. Também é possível configurar parâmetros dos Workers como, por exemplo, número máximo de tarefas simultâneas e regras de ativação do Worker, via uma interface web fornecida pelo XWHEP~\ref{figure:xwworker}.
+
+\begin{figure}[htp]
+\begin{center}
+  \includegraphics[width=15cm]{figures/xwworker.png}
+  \caption[Configuração do \textit{Worker} no XWHEP]{Configuração do \textit{Worker} no XWHEP}
+  \label{figure:xwworker}
+\end{center}
+\end{figure}
+ 
+Por sua vez, o OurGrid disponibiliza o portal WebStatus com informações recentes sobre a grade como número de Peers conectados, máquinas disponíveis e clientes executando tarefas no momento (ver Figura~\ref{figure:status}). Esses dados são coletados dos \textit{Peers} e \textit{Discovery Service} pelo \textit{Aggregator} periodicamente.
+
+\begin{figure}[htp]
+\begin{center}
+  \includegraphics[width=15cm]{figures/status.png}
+  \caption[OurGrid WebStatus]{OurGrid WebStatus}
+  \label{figure:status}
+\end{center}
+\end{figure}
+
+A própria arquitetura do condor contribui para a proteção do recurso doado diante de aplicações maliciosas.  
+O Condor permite a execução de VMs como se fossem aplicações. A aplicação é dada como finalizada quando a imagem é encerrada.
+
+O XWHEP não suporta nenhum tipo de ambiente de execução virtualizado. Já o OurGrid Worker pode ser instalado numa máquina virtual Vserver tendo os benefícios deste tipo de ambiente de execução.
+
+\subsection{Aplicações}
+
+No Condor os ambientes de execução são chamados de universos. Atualmente são disponibilizados nove universos, são eles:
+
+\begin{itemize}
+  \item \textit{Standard}: provê \textit{checkpointing} e \textit{system calls} remotas, mas com restrições;
+  \item \textit{Vanilla}: sem \textit{checkpoint} e \textit{system calls} remotas. Útil para programas que não podem ser ``relinkados'' e para scripts Shell. Os arquivos de entrada e saída podem estar num sistema de arquivos compartilhados ou pode ser usada o mecanismo de transferência de arquivos do Condor;
+  \item \textit{Grid}: permite ao usuário submeter tarefas para sistemas com interface similar ao Globus Toolkit usando o Condor;
+  \item Java: Tarefas BoT escritas para a JVM;
+  \item \textit{Scheduler}: permite submeter tarefas leves para o daemon \textit{condor\_schedd} (futuramente substituído pelo universo Local);
+  \item \textit{Local}: Executa logo que submetido na máquina local sem esperar por \textit{matching} com outra máquina (a tarefa iniciada não pode ser mais preemptada);
+  \item \textit{Parallel}: para programas que necessitam de várias máquinas por tarefa como, por exemplo, as escritas usando o padrão MPI;
+  \item VM: usado quando a tarefa não é só uma aplicação, mas uma imagem de disco (facilita a execução de máquinas virtuais) VMware ou Xen.
+\end{itemize}
+
+Uma vez escolhido um universo adequando a aplicação que se deseja executar, é necessário escrever um \textit{Submit Description File} (SDF) no qual será indicado o universo escolhido, os arquivos da aplicação, o modo de transferência entre outras informações. Um exemplo de SDF é mostrado em \ref{figure:code3}. Uma aplicação Java é posta na fila de execuções. O Java Archive (JAR) da aplicação é submetido e a classe \texttt{sim.core.Preprocess} é executada tendo como arquivo de entrada ``raw\_data.dat'' localizado na máquina que submete a tarefa, a partir da pasta corrente, no caminho ``simulator/input/'', e cujos arquivos de saída sim\_output e sim\_error serão transferidos ao final da execução.
+
+\begin{figure}
+\makebox[\textwidth]{\hrulefill}
+\scriptsize
+\begin{verbatim}
+universe = java
+executable = sim.jar
+jar_files = sim.jar
+arguments = sim.core.PreProcess raw_data.dat
+transfer_input_files = simulator/input/raw_data.dat
+output = sim_output
+error = sim_err
+should_transfer_files = YES
+when_to_transfer_output = ON_EXIT
+queue
+\end{verbatim}
+\makebox[\textwidth]{\hrulefill}
+\caption{Condor Submit Description File}
+\label{figure:code3}
+\end{figure}
+\normalsize
+
+O Condor ainda permite que tarefas sejam executadas respeitando um Grafo Acíclico Direcionado (Directed Acyclic Graph ou DAG\nomenclature{DAG}{Directed Acyclic Graph}). Isso é útil quando uma tarefa depende dos resultados de outras.
+
+O XWHEP executa aplicações Java e arquivos executáveis nos sistemas operacionais suportados (Linux, Mac OS X e Windows). Tanto o arquivo da aplicação como os dados de entrada são tratados como dados puros e para executar um comando é necessário deixá-los acessíveis via um Identificador de Recursos Uniforme (\textit{Unified Resource Identifier} ou URI\nomenclature{URI}{Unified Resource Idintifier}).
+
+O OurGrid suporta, de maneira similar, aplicações Java e arquivos executáveis nos sistemas operacionais suportados. Porém os arquivos da aplicação ficam na máquina onde está o Broker. Uma vez que um novo Worker seja escolhido para executar a tarefa, os arquivos são transferidos e a tarefa inicia só após completar esta transferência. As aplicações são submetidas por meio de um arquivo de metadados chamado Job Descriptor File (JDF\nomenclature{JDF}{Job Descriptor File}). O exemplo de JDF na Figura~\ref{figure:code4} é referente à execução da classe ``StartSim'' contida no jar ``sim.jar'' e tendo como entrada alguns argumentos numéricos e o arquivo de entrada sim.dat.
+
+\begin{figure}
+\makebox[\textwidth]{\hrulefill}
+\scriptsize
+\begin{verbatim} 
+job : 
+label   : Job1
+
+task :
+init    : put sim.jar sim.jar
+			store sim.dat sim.dat
+remote  : java -cp sim.jar. StartSim 1000 864000 sim.dat output-$JOB.$TASK
+final   : get output-$JOB.$TASK output-$JOB.$TASK
+\end{verbatim}
+\makebox[\textwidth]{\hrulefill}
+\caption{OurGrid Job Description File}
+\label{figure:code4}
+\end{figure}
+\normalsize
+
+
+\subsection{Usando a grade}
+
+\subsubsection{Detecção de Ociosidade}
+
+Nesse tipo de grade computacional aplicações do usuário do recurso devem ser priorizadas em relação às executadas na grade. para isso são necessários mecanismos que detectem e informem à grade sobre a disponibilidade do recurso. No Condor a ociosidade é regulada através de uma expressão no arquivo de configuração do recurso. Essa expressão, chamada \textit{ClassAd} (\textit{classified advertisement}) também é enviada ao \textit{Central Manager} para ser usada na etapa de \textit{matching} entre as aplicações submetidas a grade e os recursos disponíveis. Um exemplo de ClassAd é dado na Figura~\ref{figure:classad} em que um recuso estará disponível na grade assim que a média de carga for menor que 30\% e o teclado esteja inativo a mais de quinze minutos.
+
+\begin{figure}
+\makebox[\textwidth]{\hrulefill}
+\scriptsize
+\begin{verbatim}
+[
+MyType="Machine"
+TargetType="Job"
+Machine="machine1.lsd.ufcg.edu.br"
+Requirements=(LoadAvg <= 0.3) \&\& (KeyBoardIdle > (15 * 60))
+]
+\end{verbatim}
+\makebox[\textwidth]{\hrulefill}
+\caption{ClassAd do Condor}
+\label{figure:classad}
+\end{figure}
+\normalsize
+
+A ativação do Worker no XWHEP também é determinada por um parâmetro no arquivo de propriedades. As opções disponíveis são:
+
+\begin{description}
+  \item[\textit{AlwaysActive}:] É a opção padrão, na qual o worker está apto a executar tarefas;
+  \item[\textit{DateActivator}:] A disponibilidade é monitorada por data e tempo com sintaxe similar a do \textit{crontab};
+  \item[\textit{CpuActivator}:] Disponibilidade regulada pela carga da CPU e disponível somente para \textit{Workers} em Linux;
+  \item[\textit{MouseKdbActivator}:] O Worker está disponíevl 30 segundos após o dono ter usado o mouse ou teclado pela úmtima vez. Não funciona para Mac OS X;
+  \item[\textit{WinSaverActivator}:] Assim que a proteção de tela for ativada o Worker entra em modo disponível.   
+\end{description}
+
+OurGrid Worker é feita automaticamente, e de maneira similar ao \textit{MouseKdbActivator} do XWHEP, pelo monitoramento da atividade do mouse e teclado.
+
+\subsubsection{Mecanismos de Incentivo}
+
+Para incentivar a doação de recursos, o OurGrid implementa a Rede de Favores (\textit{Network of Favors} ou NoF\nomenclature{NoF}{Network of Favors}). A NoF intentiva interações com Peers colaboradores e desincentiva \textit{free-riders}, que são peers que só consomem recursos. Esse incentivo é realizado com base em interações passadas mantidas no histórico de cada \textit{Peer}. No Condor é possível priorizar aplicações usando ass expressões ClassAds na configuração da máquina. Por exemplo, adicionando a linha \verb!Rank = Owner == ``ricardo''! a máquina configurada com o ClassAd na Figura~\ref{figure:classad} prioriza aplicações submetidas por pelo cliente do usuário ricardo. Por fim, não existem mecanismos similares no XWHEP.
+
+
+\subsubsection{Checkpoint}
+
+Dada a volatilidade dos recursos, característica inerente às grades computacionais de \textit{desktops}, as tarefas podem ser interrompidas e o trabalho computado perdido. O mecanismo de chackpoint permite arquivar o estado atual de execução de uma tarefa preemptada para uma posterior execução no mesmo recurso ou em um recurso diferente através da migração dessas informações. O condor, diferentemente do XWHEP e do OurGrid, permite fazer checkpoint no universo \textit{Standard}. No entando algumas restrições são impostas entre elas:
+
+\begin{itemize}
+  \item É necessário ``relinkar'' a aplicação usando o \textit{condor\_compile};
+  \item Não é permitido a criação de múltiplos processos;
+  \item Só é permitida uma \textit{thread} no nível do \textit{kernel};
+  \item Não é permitido mapear arquivos na memória (chamadas chamadas \textit{mmap()} e \textit{munmap()});
+  \item Só permite manipulação de arquivos menores que 2 GB.
+\end{itemize}  
+
+\section{Resultados Obtidos}
+
+Como resultado da avaliação foi construída a Tabela~\ref{table:resultados}.
+
+\begin{center}
+\footnotesize
+\begin{longtable}{|p{4cm}|p{3cm}|p{3cm}|p{3cm}|} \hline
+
+\hline \multicolumn{1}{|p{4cm}|}{\textbf{Métrica Observada}} & \multicolumn{1}{p{3cm}|}{\textbf{Condor}} & \multicolumn{1}{p{3cm}|}{\textbf{XWHEP}} & \multicolumn{1}{p{3cm}|}{\textbf{OurGrid}} \\ \hline 
+\endfirsthead
+
+\multicolumn{4}{c}%
+{{\bfseries \tablename\ \thetable{} -- continuação da página anterior}} \\
+\hline \multicolumn{1}{|p{4cm}|}{\textbf{Métrica Observada}} &
+\multicolumn{1}{p{3cm}|}{\textbf{Condor}} &
+\multicolumn{1}{p{3cm}|}{\textbf{XWHEP}} &
+\multicolumn{1}{p{3cm}|}{\textbf{OurGrid}} \\ \hline 
+\endhead
+
+\hline \multicolumn{4}{|r|}{{Continua na próxima página}} \\ \hline
+\endfoot
+
+\endlastfoot
+
+Componentes Principais & 3 & 3 & 3 \\ \hline
+Sistemas Operacionais suportados & Linux Debian, Windows NT, MacOS & Linux, Windows (Cygwin) e MacOS & Qualquer sistema operacional com suporte a Java\\ \hline
+Configuração & Muitas propriedades precisam ser especificadas para pôr a grade em funcionamento & Poucas propriedades são necessárias, mas requer um banco de dados central configurado & Poucas propriedades são obrigatórias \\ \hline
+Executa em modo ``super-usuário'' & Sim & Sim & Não \\ \hline
+Portas abertas no Firewall & 2 no \textit{Central Manager} + faixa dinâmica (por padrão 100) & 9 & 3 \\ \hline
+Necessita de negociação para entrar numa grade existente? & Administrador do pool deve configurar & Não existe uma grade aberta & Não \\ \hline
+Existem ferramentas de gerencia? & Sim & Sim & Sim \\ \hline 
+Suporte ao uso de tecnologia de virtualização? & Sim & Não & Sim\\ \hline 
+É oferecido algum tipo de proteção da máquina doada? & Execução em \textit{sandbox} & Não & Pode ser executado com Vserver\\ \hline 
+Tipos de aplicações suportados & BoT, MPI, Paralelas acopladas & BoT, MPI & BoT\\ \hline
+É necesário modificar as aplicações? & Sim\footnote{No caso do uso de checkpoint}/Não & Não & Não\\ \hline
+Mecanismos de detecção de ociosidade & Sim & Sim & Sim \\ \hline
+Mecanismos de incentivo & Não & Não & Sim\\ \hline
+Mecanismo de checkpoint & Sim & Não & Não\\ \hline
+Comunidade ativa & Usuário pode doar recursos & Usuário pode doar recursos & Usuário pode doar e usar recursos\\ \hline
+\caption[Resultados da avaliação]{Resultados da avaliação}
+\label{table:resultados}
+\end{longtable}
+\end{center}
+
+Os resultados apresentados nessa tabela são úteis para a tomada de decisão sobre qual pacote de \textit{middleware} escolher para instalar num ambiente com computadores \textit{desktop} disponíveis e que haja demanda por executar aplicações que não sejam possíveis, por questões de tempo ou demanda, de ser executadas usando a infraestrutura local.
+
+Diferentes situações podem ser consideradas ao tomar esse tipo de escolha. No caso em que a urgência em pôr a grade computacional em funcionamento é um fator determinante, pacotes de middleware cuja instalação e configuração exigem menos conhecimento acerca da grade são preferencialmente escolhidos. Esse é o caso do OurGrid.
+
+Por outro lado, quando uma flexibilidade maior é requerida em termos de configurações e tipos de aplicações a serem executadas, caso em que o perfil dos usuários varie bastante, um pacote de \textit{middleware} mais flexível como o Condor é mais recomendado.
+
+Esses resultados apresentados necessitam de um maior rigor metodológico, no entanto, servem como guia para administradores e usuários que desejam melhor utilizar seus recursos   

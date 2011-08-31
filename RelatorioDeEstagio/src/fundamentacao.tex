@@ -1,0 +1,76 @@
+\chapter{Fundamentação Teórica}
+\label{fundamentacao}
+
+Esta seção tem por finalidade introduzir alguns dos conceitos abordados no estágio. Primeiro é dada uma contextualização com o histórico das grades computacionais. Depois, são definidos alguns conceitos importantes e dados exemplos de algumas aplicações executadas em grades computacionais.    
+
+\section{Grades Computacionais}
+
+\subsection{Histórico}
+
+Usar computadores ociosos conectados em rede para execução de tarefas não é uma idéia nova. Em 1982, o \textit{Worm} da Xerox executava nos \textit{desktops} da empresa~\cite{xerox:worm} aplicações que variavam muito de objetivo. Os \textit{worms} se espalhavam na rede detectando máquinas ociosas e se replicando, e realizavam tarefas complexas como diagnóstico de problemas na Ethernet e até a criação de animações em tempo real.
+
+No início dos anos 90, com a difusão dos \textit{applets} Java~\cite{java}, surgiram sistemas como Javelin~\cite{java:javelin} e Bayanihan~\cite{java:bayanihan}. Tais aplicações se propagavam através dos navegadores, o que era uma vantagem dado que o tráfego era realizado via \textit{Hypertext Transfer Protocol} (HTTP\nomenclature{HTTP}{Hypertext Transfer Protocol}). Os sistemas eram flexíveis e facilmente instaláveis. No entanto, os navegadores executavam os \textit{applets} em \textit{sandboxes} o que tornava impossível o acesso a alguns serviços como monitores de carga de CPU e memória principal. As aplicações executadas eram res\-tri\-tas também já que não podiam realizar leitura ou escrita no sistema de arquivos local. A escalabilidade não foi provada dado que esses sistemas não foram implantados em mais que algumas dezenas de recursos. Além disso, não existiam ferramentas de gerência para tais aplicativos.
+
+Ainda nos anos 90, Anderson, Culler e Patterson~\cite{now} argumentavam que as \textit{Networks of Workstations} (NOWs)\nomenclature{NOW}{Network of Workstations} podiam ter um desempenho igual ou maior que máquinas com Massively Parallel Processor (MPP)\nomenclature{MPP}{Massively Parallel Processor}. Este argumento era suportado por três particularidades: (i) a capacidade das redes locais (Local-area Networks - LANs)\nomenclature{LAN}{Local-area Network} permitia a escala das aplicações com protocolos assíncronos de transferência de dados; (ii) as máquinas \textit{desktop} estavam me\-lho\-ran\-do significativamente em poder de processamento; e (iii) operações de I/O \nomenclature{I/O}{Input/Output} continuavam a ser um gargalo para supercomputadores e que podia ser contornado com a paralelização nas NOWs.
+
+Foi também nos anos 90, que um sistema chamado Condor~\cite{condor:history} foi ganhando espaço. O Condor é um \textit{middleware} para execução distribuída de aplicações em \textit{batch}. O Condor originalmente foi concebido para uso em ambientes LAN, mas atualmente permite a comunicação em escala global, chegando a ter cerca de 274498 máquinas em 1897 \textit{pools} em Março de 2009\cite{condor:status}.
+
+A difusão da Internet no fim dos anos 90 trouxe a possibilidade de conectar milhões de \textit{desktops} ao redor do mundo e com isso projetos de computação voluntária como, por exemplo, o SETI@home~\cite{seti}, ganharam popularidade. A computação voluntária fazia uso dos \textit{desktops} de pessoas comuns ao redor do mundo para a execução de aplicações altamente paralelizáveis em troca de prestígio social. O SETI@home, por exemplo, divulga os maiores contribuintes na sua página inicial além de fornecer proteções de tela com imagens em três dimensões relacionadas à pesquisa.
+
+Após isso, vários projetos em universidade começaram a desenvolver sistemas para aplicações em grades de \textit{desktop}, entre eles o XtremWeb~\cite{xtremweb} e BOINC~\cite{boinc}. Algumas empresas também decidiram lançar seus produtos destinados a comunidade corporativa como o Entropia~\cite{entropia}, United Devices (apud \cite{uniteddevices}). E mais recentemente, em 2004, InteGrade~\cite{integrade} e OurGrid~\cite{ourgrid} surgem como iniciativas nacionais no uso de poder computacional de \textit{desktops} ociosos.
+
+\subsection{Conceitos}
+
+Grades computacionais são sistemas distribuídos caracterizados pelo compartilhamento de recursos heterogêneos localizados em diferentes domínios administrativos (federados)~\cite{thegrid2}. O \textit{middleware} de grade computacional é a camada de software que possibilita a comunicação entre os recursos da grade e as aplicações de forma consistente e homogênea. A arquitetura do middleware define o propósito, as funções e interações entre os componentes para gerenciar recursos tais como processamento e armazenamento~\cite{middleware}.
+
+Não existe um consenso na literatura sobre a classificação das grades computacionais. Porém alguns conceitos se destacam e são necessários para o entendimento desse trabalho.
+
+%O que é?
+As grades computacionais são chamadas oportunistas quando os recursos que compõem a grade são usados quando estão ociosos. Estudos mostram que estações de trabalho ficam ociosas entre 60\% e 80\% do seu tempo de vida\cite{oportunistic}. Dessa forma, grades oportunistas oferecem uma forma barata de se prover computação de alta vazão usando estações \textit{desktop} ociosas. 
+
+Nesse contexto existem também as grades de \textit{desktops}, que podem ser definidas como um conjunto de \textit{desktops} conectados em rede com a intenção de se prover computação distribuída de alta vazão. Os recursos de processamento e armazenamento são utilizados de forma oportunista, logo são, naturalmente, grades oportunistas, ou seja, as aplicações do dono da máquina têm prioridade sobre as aplicações executadas na grade e estas são executadas somente quando não há demanda do dono da máquina. Além disso, a disponibilidade do recurso depende de fatores, como falha de rede, \textit{hardware} ou \textit{software}, e não existe nenhuma garantia sobre os recursos doados aos clientes da grade. Além da volatilidade dos recursos, outra característica que se destaca é a heterogeneidade dos recursos que compõem a grade no tocante a processadores, sistema operacional, freqüência de \textit{clock}, espaço em disco e velocidade de acesso à rede, por exemplo.
+
+Quando usuários domésticos passam a doar recursos ociosos para a grade sem, em troca, consumir recursos da grade, tem-se o que se chama de computação voluntária. O domínio sobre os recursos da grade estende as fronteiras dos laboratórios envolvidos e a comunidade passa a ter certo envolvimento com a pesquisa. Isso acontece, por exemplo, com o projeto SETI@Home onde qualquer pessoa pode doar recursos para a grade e em troca os doadores mais ativos são listados na página principal do projeto.
+
+Em contrapartida, existem ainda as grades computacionais de serviço. Nesse caso, organizações virtuais tipicamente mantém uma grade formada por recursos dedicados e oferecem garantias de Qualidade de Serviço (\textit{Quality of service} - QoS\nomenclature{QoS}{Quality of Service}) a seus clientes. Além disso, os recursos são fechados por políticas de acesso restrito firmados por essas organizações vir\-tuais. Este trabalho mantém o foco nas grades computacionais de \textit{desktop} classificadas como oportunistas. 
+
+Além dos termos apresentados, as próximas seções usam alguns termos informalmente convencionados pela comunidade científica. Cliente é aquele que deseja executar aplicações ou \textit{jobs}, que são conjuntos de tarefas ou \textit{tasks}. O cliente submete aplicações para a grade de modo que o escalonador do servidor envie tarefas para \textit{workers} que estejam disponíveis. Os \textit{workers}, por sua vez, são \textit{daemons} que executam nas máquinas (recursos) doadas à grade.
+
+Uma vez definidos os termos usados, pode-se pensar em características de um modelo ideal de grade de \textit{desktops}. Algumas são:
+
+\begin{enumerate}
+  \item Escalabilidade: A vazão do sistema deve aumentar com a adição de máquinas no sistema;
+  \item Tolerância a faltas: O sistema deve tolerar falhas tanto do servidor de aplicações como dos \textit{workers}. Nesse trabalho, incluem-se no termo falhas não só as falhas de \textit{hardware} e \textit{software} como também, a interrupção da execução do \textit{worker} por atividade do teclado ou mouse, ou ainda, por desligamento da máquina, por exemplo;
+  \item Proteção: A máquina deve ser protegida de aplicações maliciosas que sejam submetidas à grade;
+  \item Gerenciabilidade: Com o grande número de recursos sendo doados na grade em diversos sites diferentes, torna-se necessário que atividades gerenciais como instalação, atualização e monitoramento possam ser efetivadas automaticamente;
+  \item Não-intrusividade: O usuário dono da máquina deve ter prioridade sobre as aplicações que queiram executar na grade. A aplicação pode ser finalizada e recomeçada em outra máquina ou pode ser pausada e recomeçada assim que o dono da máquina não a estiver utilizando.
+  \item Usabilidade: O usuário não deve encontrar obstáculos para executar uma aplicação na grade, de modo que não seja necessário modificar aplicações. Isso impediria a execução de aplicações legadas ou de código proprietário ao qual o usuário não tem acesso para fazer as modificações necessárias para executar na grade.
+\end{enumerate}
+
+No contexto deste trabalho, dois desses aspectos foram analisados: gerenciabilidade e usabilidade.
+ 
+\subsection{Arquitetura}
+\label{arquitetura}
+
+Cada middleware de grades de desktops define uma arquitetura formada por componentes que desempenham diferentes papéis na grade e cada um estabeleceu sua forma própria de nomear tais componentes, mas em geral eles desempenham serviços bem semelhantes em três níveis distintos definidos em~\cite{uniteddevices} (ver Figura~\ref{figure:modelo}): 
+
+\begin{enumerate}
+  \item O cliente: o cliente possui o código executável da aplicação, que será submetida para execução na grade. Assim, o módulo cliente é usado para controlar a execução das tarefas, servindo de \textit{front-end} entre a grade e seus usuários;
+  \item A gerência de aplicação e recursos: armazena informações sobre as aplicações até que recursos estejam disponíveis para executá-la e realiza o casamento entre aplicações e recursos disponíveis;
+  \item Os \textit{workers}: são os recursos da grade, nos quais as tarefas do cliente executam de fato.
+\end{enumerate}
+
+\begin{figure}[htp]
+\begin{center}
+  \includegraphics[width=10cm]{figures/modelo.png}
+  \caption[Modelo Geral de Grades Computacionais de Desktop]{Modelo Geral de Grades Computacionais de Desktop}
+  \label{figure:modelo}
+\end{center}
+\end{figure}
+
+\subsection{Aplicações}
+
+Vários tipos de aplicações podem tirar proveito da execução em grades de \textit{desktops}. Entre as áreas mais comuns se encontram a biologia computacional~\cite{biology:athome,biology:fightaids}, os modelos climáticos~\cite{climate} e aplicações de física~\cite{physics}. Com o advento da computação em grades de \textit{desktop}, foi possível levar as simulações e experimentos científicos a um novo patamar, dada a possibilidade de explorar grandes faixas de parâmetros nos simuladores ou mesmo realizar simulações e experimentos mais complexos.
+
+Qualquer aplicação distribuída pode ser executada numa grade computacional. Aplicações paralelas especialmente são as que mais podem tirar proveito desse tipo de arquitetura distribuída.  
+Uma classe de aplicações paralelas notável é a das aplicações \textit{Bag-of-Tasks} (BoT)\nomenclature{BoT}{Bag-of-Tasks} que são aquelas aplicações paralelas cujas tarefas são independentes entre si, ou seja, não há comunicação entre as tarefas. Essas aplicações são bastante comuns na prática, presentes em mineração de dados, varredura de parâmetros, simulações e cálculo de fractais, por exemplo~\cite{labs}.

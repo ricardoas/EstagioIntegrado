@@ -1,0 +1,145 @@
+\documentclass[a4paper,titlepage,12pt]{report}
+\usepackage[brazil]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{epsfig}
+\usepackage{times}
+\usepackage{amsfonts,amssymb,latexsym,eucal,amsmath,theorem,amscd}
+\usepackage{graphicx}
+\usepackage[T1]{fontenc}
+
+\usepackage{color}
+\usepackage{longtable}
+\usepackage{fancyhdr}
+\usepackage{fancyvrb}
+\usepackage{verbatim}
+
+\usepackage{graphicx,url}
+\usepackage{amssymb}
+\usepackage{epsfig}
+
+\usepackage[portuguese]{nomencl}
+
+\setlength{\textheight}{247mm}
+\setlength{\textwidth}{155mm}
+\setlength{\topmargin}{-0.4mm}
+\setlength{\oddsidemargin}{5.4mm}
+\setlength{\voffset}{-13mm}
+\usepackage{colortbl}
+
+\sloppy
+% Comandos de estilo e espacamento ----------------------------------------
+\newlength{\defbaselineskip}
+\setlength{\defbaselineskip}{\baselineskip}
+\newcommand{\setlinespacing}[1]%
+           {\setlength{\baselineskip}{#1 \defbaselineskip}}
+
+\newcommand{\emptypage}
+           {\newpage\thispagestyle{empty}\mbox{}}
+
+\setcounter{topnumber}{2}
+\renewcommand{\topfraction}{.7}
+\setcounter{bottomnumber}{1}
+\renewcommand{\bottomfraction}{.3}
+\setcounter{totalnumber}{3}
+\renewcommand{\textfraction}{.2}
+\renewcommand{\floatpagefraction}{.5}
+\setcounter{dbltopnumber}{2}
+\renewcommand{\dbltopfraction}{.7}
+\renewcommand{\dblfloatpagefraction}{.5}
+\renewcommand{\appendixname}{Anexo}
+
+\oddsidemargin -28pt
+\evensidemargin -28pt
+\marginparwidth 50pt
+\marginparsep 5pt
+\topmargin -27pt
+\hoffset 15mm
+\textheight 237mm
+\textwidth 155mm
+\renewcommand{\baselinestretch}{1.5}
+% ------------------------------------------------------------------------
+
+\renewcommand{\nomname}{Lista de Siglas e Abreviaturas}
+
+\makenomenclature
+
+\begin{document}
+
+\include{capa}
+\newpage
+
+% Configura os números das páginas para algarismos romanos
+\pagestyle{plain}
+\pagenumbering{roman}
+
+% -------- Lista de Figuras --------- %
+
+%\listoffigures
+%\newpage
+
+% ------------- Índice -------------- %
+
+
+
+\clearpage
+%% Corpo do documento -------------------
+%
+% Configura os números das páginas para algarismos indo-arabicos
+\pagestyle{plain}
+\setcounter{page}{1}
+\pagenumbering{arabic}
+
+\newenvironment{worduglystyle}[1]
+{\spaceskip=.33em plus \hsize #1}
+{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Definicao do cabecalho: secao do lado esquerdo e numero da pagina do lado direito
+\pagestyle{fancy}
+\addtolength{\headwidth}{\marginparsep}\addtolength{\headwidth}{\marginparwidth}\headwidth
+= \textwidth
+%\renewcommand{\sectionmark}[1]{\markboth{#1}{}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}}\lhead[\fancyplain{}{\bfseries\thepage}]%
+         {\fancyplain{}{\emph{\rightmark}}}\rhead[\fancyplain{}{\bfseries\leftmark}]%
+             {\fancyplain{}{\bfseries\thepage}}\cfoot{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\include{banca}
+
+\include{agradecimentos}
+
+\include{apresentacao}
+
+\include{resumo}
+
+\tableofcontents
+
+\printnomenclature[1cm]
+
+\listoffigures
+
+\listoftables
+
+\include{introducao}
+
+\include{objetivos}
+
+\include{ambiente}
+
+\include{fundamentacao}
+
+\include{metodologia}
+
+\include{resultados}
+
+\include{consideracoes}
+
+\bibliographystyle{plain}
+\bibliography{relatorio}
+
+\appendix
+
+\chapter{Plano de Estágio}
+
+\end{document}

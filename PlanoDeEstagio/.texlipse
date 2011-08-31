@@ -1,0 +1,13 @@
+#TeXlipse project settings
+#Tue Mar 10 11:19:22 BRT 2009
+builderNum=2
+outputDir=
+makeIndSty=
+bibrefDir=
+outputFormat=pdf
+tempDir=tmp
+mainTexFile=plano.tex
+outputFile=plano.pdf
+langSpell=en
+markDer=true
+srcDir=src
